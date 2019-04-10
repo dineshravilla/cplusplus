@@ -17,6 +17,10 @@ class node {
 public:
     int val;
     node *next;
+    node() {
+        this->val = 0;
+        this->next = NULL;
+    }
 };
 
 
@@ -54,9 +58,12 @@ public:
     //reverse
     void reverseIter(node*);
     void reverseRecursive(node*, node*);
+    void reverseSubList(node*, int, int);               // EPI #7.2 (head, start of sublist, end of sublist)
     
     //merging
-    node* mergeTwoSortedLists(node*, node*);
+    node* mergeTwoSortedLists(node*, node*);            // EPI #7.1
+    
+    
     
     //return head
     node* retHead();
@@ -229,6 +236,26 @@ void linkedList:: reverseRecursive(node *q, node *p) {
         p->next = q;
     } else {
         head = q;
+    }
+}
+
+//reverses sublist in a singly linked list
+// (node *head, int start of sublist, int end of sublist)
+void linkedList:: reverseSubList(node *p, int start, int end) {
+    node *sublistHead = NULL;
+    p = head;
+    int k = 1;
+    while(k++ < start) {
+        sublistHead = p;
+        p = p->next;
+    }
+    
+    node *sublistIter = sublistHead->next;
+    while(start++ < end) {
+        node *temp = sublistIter->next;
+        sublistIter->next = temp->next;
+        temp->next = sublistHead->next;
+        sublistHead->next = temp;
     }
 }
 

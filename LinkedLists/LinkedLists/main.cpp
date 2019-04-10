@@ -17,11 +17,12 @@ int main(int argc, const char * argv[]) {
     
     linkedList list1, list2;
     
-    /*
+    
     list1.addNode(5);
     for(int i = 1; i <= NODES; i++) {
         list1.append(i);
-    }*/
+    }
+    
     list1.append(12);
     list1.append(45);
     list1.append(56);
@@ -33,12 +34,12 @@ int main(int argc, const char * argv[]) {
     //cout << list1.retHead()->next->val;
     //cout << list2.retHead()->next->val;
     
-    node *newHead = list1.mergeTwoSortedLists(list1.retHead(), list2.retHead());
+    //node *newHead = list1.mergeTwoSortedLists(list1.retHead(), list2.retHead());
     
-    while(newHead) {
+    /*while(newHead) {
         cout << newHead->val << " ";
         newHead = newHead->next;
-    }
+    }*/
     
     //list.append(2);
     //list.append(2);
@@ -56,10 +57,11 @@ int main(int argc, const char * argv[]) {
     
     //list1.removeDups2(head);
     
-    //list1.display();
+    list1.display();
     //list2.display();
     
-    //list1.display();
+    list1.reverseSubList(NULL, 2, 4);
+    list1.display();
     
     return 0;
 }
