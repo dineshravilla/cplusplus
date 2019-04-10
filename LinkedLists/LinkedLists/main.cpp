@@ -20,7 +20,9 @@ int main(int argc, const char * argv[]) {
     for(int i = 1; i <= NODES; i++) {
         list.append(i);
     }
-    
+    list.append(2);
+    list.append(2);
+    list.append(10);
     //node *temp = list.del(20);          // position
     //node *temp = list.delKey(10);       // key
     
@@ -29,8 +31,12 @@ int main(int argc, const char * argv[]) {
     //list.delAltNodesIter(head);
     //list.delAltNodesRecursive(head);
     
-    list.reverseIter(head);
+    //list.reverseIter(head);
     //list.reverseRecursive(NULL, head);
+    
+    list.display(head);
+    
+    list.removeDups2(head);
     
     list.display(head);
     

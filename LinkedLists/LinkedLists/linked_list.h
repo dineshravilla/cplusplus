@@ -9,6 +9,8 @@
 #ifndef linked_list_h
 #define linked_list_h
 
+#include <unordered_set>
+
 using namespace std;
 
 class node {
@@ -46,7 +48,8 @@ public:
     
     //remove duplicates
     //-----------------
-    
+    void removeDups1(node*);
+    void removeDups2(node*);
     
     //reverse
     void reverseIter(node*);
@@ -219,6 +222,43 @@ void linkedList:: reverseRecursive(node *q, node *p) {
         p->next = q;
     } else {
         head = q;
+    }
+}
+
+//removes duplicates two loops O(n^2)
+void linkedList:: removeDups1(node *p) {
+    node *q;
+    node *temp;
+    while(p && p->next) {
+        q = p;
+        while(q->next) {
+            if(p->val == q->next->val) {
+                temp = q->next;
+                q->next = q->next->next;
+                delete(temp);
+            } else {
+                q = q->next;
+            }
+        }
+        p = p->next;
+    }    
+}
+
+//removes duplicates using hashset
+void linkedList:: removeDups2(node *p) {
+    node *q;
+    //p = head;
+    q = NULL;
+    unordered_set<int> hashSet;
+    while(p) {
+        if(hashSet.find(p->val) != hashSet.end()) {
+            q->next = p->next;
+            delete(p);
+        } else {
+            hashSet.insert(p->val);
+            q = p;
+        }
+        p = q->next;
     }
 }
 
