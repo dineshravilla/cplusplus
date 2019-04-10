@@ -20,13 +20,14 @@ public:
 };
 
 
-node *head;
+//node *head;
 int findPos = 1;        // Just a temp - to determine the position of key to delete based on the position - used in find(int) and delKey(int)
 
 
 class linkedList {
 public:
     node *tail;
+    node *head;
     linkedList() {
         head = NULL;
         tail = NULL;
@@ -36,18 +37,17 @@ public:
     void addNode(int);
     void append(int);
     void insert(int, int);  //(val, position)
-    
+  
     //search
     bool find(int);         // searches for key in the list. returns 1 if found
     
     //delete functions
     node* del(int);          //(position) - returns the new head if deleted successfully
     node* delKey(int);       //(val) - searches for val and deletes. returns the new head if deleted successfully
-    void delAltNodesIter(node*);
+    void delAltNodesIter();
     void delAltNodesRecursive(node*);
     
     //remove duplicates
-    //-----------------
     void removeDups1(node*);
     void removeDups2(node*);
     
@@ -55,8 +55,15 @@ public:
     void reverseIter(node*);
     void reverseRecursive(node*, node*);
     
+    //merging
+    node* mergeTwoSortedLists(node*, node*);
+    
+    //return head
+    node* retHead();
+    
+    
     int  length(node *);
-    void display(node *);
+    void display();
     
 };
 
@@ -175,7 +182,7 @@ node* linkedList:: delKey(int key) {
 // deletes alternate nodes in linked list - Iterative
 //"p" in while is for even number of nodes in LL
 //"p->next" in while is for odd number of nodes in LL
-void linkedList:: delAltNodesIter(node *head) {
+void linkedList:: delAltNodesIter() {
     node *q, *p;
     q = NULL;
     p = head;
@@ -262,6 +269,53 @@ void linkedList:: removeDups2(node *p) {
     }
 }
 
+//returns head of the list
+node* linkedList:: retHead() {
+    return this->head;
+}
+
+//merges two sorted results
+node* linkedList:: mergeTwoSortedLists(node *p, node *q) {
+    
+    node* mergedHead, *temp;
+    
+    if(p == NULL)
+        return q;
+    if(q == NULL)
+        return p;
+    if(p == NULL && q == NULL)
+        return NULL;
+    
+    if(p->val < q->val) {
+        mergedHead = p;
+        p = p->next;
+    } else {
+        mergedHead = q;
+        q = q->next;
+    }
+    
+    temp = mergedHead;
+    
+    while(p && q) {
+        if(p->val < q->val) {
+            temp->next = p;
+            temp = p;
+            p = p->next;
+        } else {
+            temp->next = q;
+            temp = q;
+            q = q->next;
+        }
+    }
+    
+    if(p)
+        temp->next = p;
+    if(q)
+        temp->next = q;
+    
+    return mergedHead;
+}
+
 //returns length of a list
 int linkedList:: length(node *head) {
     int count = 0;
@@ -275,12 +329,13 @@ int linkedList:: length(node *head) {
 }
 
 //display linked_list
-void linkedList:: display(node *head) {
-    if(head == NULL)
+void linkedList:: display() {
+    node *p = head;
+    if(p == NULL)
         return;
-    while(head) {
-        cout << head->val << " ";
-        head = head->next;
+    while(p) {
+        cout << p->val << " ";
+        p = p->next;
     }
     cout << endl;
 }
