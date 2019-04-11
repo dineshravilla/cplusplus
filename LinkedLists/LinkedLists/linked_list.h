@@ -64,6 +64,13 @@ public:
     node* mergeTwoSortedLists(node*, node*);            // EPI #7.1
     
     
+    //swap
+    node* swapNodePairs(node*);                         // Leetcode #24
+    
+    //rotate
+    node* rotateRight(node*, int);                      // Leetcode #61
+    
+    
     
     //return head
     node* retHead();
@@ -341,6 +348,43 @@ node* linkedList:: mergeTwoSortedLists(node *p, node *q) {
         temp->next = q;
     
     return mergedHead;
+}
+
+
+//Swap nodes in pairs - leetcode #24
+node* linkedList:: swapNodePairs(node *p) {
+    if(p == NULL || p->next == NULL)
+        return p;
+    node *firstNode = p;
+    node *secondNode = p->next;
+    firstNode->next = secondNode->next;
+    secondNode->next = firstNode;
+    p = secondNode;
+    //head = secondNode;
+    //cout << endl << p->val << endl;
+    p->next->next = swapNodePairs(p->next->next);
+    return p;
+}
+
+
+//Rotate list - leetcode #61
+node* linkedList:: rotateRight(node *p, int k) {
+    //make it circular list first
+    int len = 1;
+    if(p == NULL)
+        return NULL;
+    while(p->next) {
+        len++;
+        p = p->next;
+    }
+    p->next = head;
+    k = k % len;
+    for(int i = 0; i < len-k; i++) {
+        p = p->next;
+    }
+    node *newHead = p->next;
+    p->next = NULL;
+    return newHead;
 }
 
 //returns length of a list

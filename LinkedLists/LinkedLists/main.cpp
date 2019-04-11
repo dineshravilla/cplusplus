@@ -60,7 +60,13 @@ int main(int argc, const char * argv[]) {
     list1.display();
     //list2.display();
     
-    list1.reverseSubList(NULL, 2, 4);
+    //list1.reverseSubList(NULL, 2, 4);
+    //node *tempHead = list1.retHead();
+    
+    //list1.head = list1.swapNodePairs(list1.head);
+    
+    list1.head = list1.rotateRight(list1.head, 4);
+    
     list1.display();
     
     return 0;
