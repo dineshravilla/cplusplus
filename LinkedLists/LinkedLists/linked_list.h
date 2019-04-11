@@ -58,18 +58,23 @@ public:
     //reverse
     void reverseIter(node*);
     void reverseRecursive(node*, node*);
-    void reverseSubList(node*, int, int);               // EPI #7.2 (head, start of sublist, end of sublist)
+    void reverseSubList(node*, int, int);               // EPI #7.2 (head, start of sublist, end of sublist); Leetcode #92
     
     //merging
     node* mergeTwoSortedLists(node*, node*);            // EPI #7.1
     
     
     //swap
-    node* swapNodePairs(node*);                         // Leetcode #24
+    node* swapNodePairs(node*);       // Leetcode #24
     
     //rotate
-    node* rotateRight(node*, int);                      // Leetcode #61
+    node* rotateRight(node*, int);    // Leetcode #61 (head, num of times to rotate right)
     
+    //partition
+    node* partition(node*, int);      // Leetcode #86 (head, x) <nodes_lessthan_x> x <nodes_greaterthan_x>
+    
+    //cycle detection
+    bool detectCycle(node*);          // EPI #7.3; Leetcode #141
     
     
     //return head
@@ -247,7 +252,8 @@ void linkedList:: reverseRecursive(node *q, node *p) {
 }
 
 //reverses sublist in a singly linked list
-// (node *head, int start of sublist, int end of sublist)
+//(node *head, int start of sublist, int end of sublist)
+//EPI #7.2; Leetcode #92
 void linkedList:: reverseSubList(node *p, int start, int end) {
     node *sublistHead = NULL;
     p = head;
@@ -385,6 +391,51 @@ node* linkedList:: rotateRight(node *p, int k) {
     node *newHead = p->next;
     p->next = NULL;
     return newHead;
+}
+
+
+//Partition list
+//nodes less than x - x - nodes greater than x
+node* linkedList:: partition(node *p, int x) {
+    
+    node *beforeHead = new node;
+    node *afterHead = new node;
+    node *before = beforeHead;
+    node *after = afterHead;
+    
+    while(p) {
+        if(p->val < x) {
+            before->next = p;
+            before = before->next;
+        } else {
+            after->next = p;
+            after = after->next;
+        }
+        p = p->next;
+    }
+    after->next = NULL;
+    before->next = afterHead->next;
+    delete afterHead;
+    return beforeHead->next;
+}
+
+
+//cycle detection
+//EPI #7.3
+//Leetcode #141
+bool linkedList:: detectCycle(node *p) {
+    //slow and fast pointers
+    if(p == NULL || p->next == NULL)
+        return false;
+    node *slow = p;
+    node *fast = p->next;
+    while(slow != fast) {
+        if(fast == NULL || fast->next == NULL)
+            return false;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return true;
 }
 
 //returns length of a list

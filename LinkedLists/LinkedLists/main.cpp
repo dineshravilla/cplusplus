@@ -27,6 +27,14 @@ int main(int argc, const char * argv[]) {
     list1.append(45);
     list1.append(56);
     
+    node *temp = list1.head;
+    
+    while(temp->next) {
+        temp = temp->next;
+    }
+    //cout << temp->val;
+    temp->next = list1.head;
+    
     list2.append(21);
     list2.append(34);
     list2.append(70);
@@ -57,7 +65,7 @@ int main(int argc, const char * argv[]) {
     
     //list1.removeDups2(head);
     
-    list1.display();
+    //list1.display();
     //list2.display();
     
     //list1.reverseSubList(NULL, 2, 4);
@@ -65,9 +73,16 @@ int main(int argc, const char * argv[]) {
     
     //list1.head = list1.swapNodePairs(list1.head);
     
-    list1.head = list1.rotateRight(list1.head, 4);
+    //list1.head = list1.rotateRight(list1.head, 4);
     
-    list1.display();
+    //list1.head = list1.partition(list1.head, 5);
+    
+    if(list1.detectCycle(list1.head))
+        cout << "cycle detected";
+    else
+        cout << "no cycle";
+    
+    //list1.display();
     
     return 0;
 }
