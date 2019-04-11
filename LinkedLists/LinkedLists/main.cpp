@@ -27,6 +27,10 @@ int main(int argc, const char * argv[]) {
     list1.append(45);
     list1.append(56);
     
+    /*
+     
+     // list1 as cycle
+     // end -> head
     node *temp = list1.head;
     
     while(temp->next) {
@@ -34,6 +38,7 @@ int main(int argc, const char * argv[]) {
     }
     //cout << temp->val;
     temp->next = list1.head;
+    */
     
     list2.append(21);
     list2.append(34);
@@ -77,12 +82,17 @@ int main(int argc, const char * argv[]) {
     
     //list1.head = list1.partition(list1.head, 5);
     
+    /*
     if(list1.detectCycle(list1.head))
         cout << "cycle detected";
     else
         cout << "no cycle";
+    */
     
     //list1.display();
+    list1.display();
+    list1.head = list1.mergeEvenOdd(list1.head);
+    list1.display();
     
     return 0;
 }

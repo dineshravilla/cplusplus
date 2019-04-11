@@ -62,6 +62,10 @@ public:
     
     //merging
     node* mergeTwoSortedLists(node*, node*);            // EPI #7.1
+    node* mergeEvenOdd(node*);                          // EPI #7.10
+    
+    //reorder
+    void reorderList(node*, node*);
     
     
     //swap
@@ -354,6 +358,47 @@ node* linkedList:: mergeTwoSortedLists(node *p, node *q) {
         temp->next = q;
     
     return mergedHead;
+}
+
+
+//merge even->odd; EPI #7.10
+node* linkedList:: mergeEvenOdd(node *p) {
+    if(p == NULL)
+        return NULL;
+    node *evenBefore = new node;
+    node *oddBefore = new node;
+    node *even = evenBefore;
+    node *odd = oddBefore;
+    
+    while(p) {
+        even->next = p;
+        even = even->next;
+        
+        odd->next = p->next;
+        odd = odd->next;
+        
+        p = p->next->next;
+    }
+    odd->next = NULL;
+    even->next = oddBefore->next;
+    return evenBefore->next;
+}
+
+
+//reorder list; Leetcode #143
+void linkedList:: reorderList(node *actualHead, node *revHead) {
+    int len = this->length(actualHead);
+    int i = 1;
+    node *newHead;
+    newHead = actualHead;
+    newHead->next = revHead;
+    while(i <= len/2) {
+        newHead = newHead->next;
+        actualHead = actualHead->next;
+        newHead->next = actualHead;
+        
+        revHead = revHead->next;
+    }
 }
 
 
