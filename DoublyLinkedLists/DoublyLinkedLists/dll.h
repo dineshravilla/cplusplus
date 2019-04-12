@@ -95,7 +95,7 @@ void doublyLL:: display() {
         last = p;
         p = p->next;
     }
-    cout << endl << "-----------------------------"
+    cout << endl << "----------------------"
                  << endl << "Reversed List" << endl;
     //reverse display
     while(last) {
