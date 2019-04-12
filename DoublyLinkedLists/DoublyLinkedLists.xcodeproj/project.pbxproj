@@ -58,8 +58,8 @@
 		E26D480F22605B91000B7742 /* DoublyLinkedLists */ = {
 			isa = PBXGroup;
 			children = (
-				E26D481022605B91000B7742 /* main.cpp */,
 				E26D481722605BAF000B7742 /* dll.h */,
+				E26D481022605B91000B7742 /* main.cpp */,
 			);
 			path = DoublyLinkedLists;
 			sourceTree = "<group>";

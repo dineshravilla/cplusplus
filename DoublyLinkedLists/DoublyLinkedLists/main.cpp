@@ -7,9 +7,21 @@
 //
 
 #include <iostream>
+#include "dll.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    
+    doublyLL dll;
+    
+    dll.append(12);
+    dll.append(32);
+    dll.append(54);
+    dll.append(86);
+    
+    
+    dll.insertAtBegin(23);
+    dll.insertAtEnd(24);
+    
+    
+    dll.display();
 }
