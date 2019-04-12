@@ -23,10 +23,8 @@ public:
     }
 };
 
-
 //node *head;
 int findPos = 1;        // Just a temp - to determine the position of key to delete based on the position - used in find(int) and delKey(int)
-
 
 class linkedList {
 public:
@@ -56,7 +54,7 @@ public:
     void removeDups2(node*);
     
     //reverse
-    void reverseIter(node*);
+    node* reverseIter(node*);
     void reverseRecursive(node*, node*);
     void reverseSubList(node*, int, int);               // EPI #7.2 (head, start of sublist, end of sublist); Leetcode #92
     
@@ -64,9 +62,9 @@ public:
     node* mergeTwoSortedLists(node*, node*);            // EPI #7.1
     node* mergeEvenOdd(node*);                          // EPI #7.10
     
+  
     //reorder
     void reorderList(node*, node*);
-    
     
     //swap
     node* swapNodePairs(node*);       // Leetcode #24
@@ -80,14 +78,11 @@ public:
     //cycle detection
     bool detectCycle(node*);          // EPI #7.3; Leetcode #141
     
-    
     //return head
     node* retHead();
     
-    
-    int  length(node *);
+    int  length();
     void display();
-    
 };
 
 
@@ -129,7 +124,7 @@ void linkedList:: append(int num) {
 //inserts node with "num" at position "pos"
 // 1->2->(new Node)->3->4->5
 void linkedList:: insert(int num, int pos) {
-    if(pos - this->length(head) > 1)
+    if(pos - this->length() > 1)
         return;
     node *temp = new node;
     temp->val = num;
@@ -149,7 +144,6 @@ void linkedList:: insert(int num, int pos) {
     }
 }
 
-
 //returns 1 if "key" is found in the list
 bool linkedList:: find(int key) {
     node *t = head;
@@ -168,7 +162,7 @@ bool linkedList:: find(int key) {
 
 //deletes node at position "pos" and returns true if deleted successfully
 node* linkedList:: del(int pos) {
-    if(pos > this->length(head))
+    if(pos > this->length())
         return head;
     if(head == NULL) {
         return NULL;
@@ -232,7 +226,7 @@ void linkedList:: delAltNodesRecursive(node *head) {
 }
 
 //reverses linked list iteratively - r, q, p - sliding pointers.
-void linkedList:: reverseIter(node *p) {
+node* linkedList:: reverseIter(node *p) {
     node *r = NULL;
     node *q = NULL;
     while(p) {
@@ -241,8 +235,8 @@ void linkedList:: reverseIter(node *p) {
         p = p->next;
         q->next = r;
     }
-    head = q;
-    //return head;
+    //head = q;
+    return q;
 }
 
 //reverses linked list recursively
@@ -360,7 +354,6 @@ node* linkedList:: mergeTwoSortedLists(node *p, node *q) {
     return mergedHead;
 }
 
-
 //merge even->odd; EPI #7.10
 node* linkedList:: mergeEvenOdd(node *p) {
     if(p == NULL)
@@ -387,20 +380,9 @@ node* linkedList:: mergeEvenOdd(node *p) {
 
 //reorder list; Leetcode #143
 void linkedList:: reorderList(node *actualHead, node *revHead) {
-    int len = this->length(actualHead);
-    int i = 1;
-    node *newHead;
-    newHead = actualHead;
-    newHead->next = revHead;
-    while(i <= len/2) {
-        newHead = newHead->next;
-        actualHead = actualHead->next;
-        newHead->next = actualHead;
-        
-        revHead = revHead->next;
-    }
+    int len = length();
+    cout << len;
 }
-
 
 //Swap nodes in pairs - leetcode #24
 node* linkedList:: swapNodePairs(node *p) {
@@ -416,7 +398,6 @@ node* linkedList:: swapNodePairs(node *p) {
     p->next->next = swapNodePairs(p->next->next);
     return p;
 }
-
 
 //Rotate list - leetcode #61
 node* linkedList:: rotateRight(node *p, int k) {
@@ -437,7 +418,6 @@ node* linkedList:: rotateRight(node *p, int k) {
     p->next = NULL;
     return newHead;
 }
-
 
 //Partition list
 //nodes less than x - x - nodes greater than x
@@ -464,7 +444,6 @@ node* linkedList:: partition(node *p, int x) {
     return beforeHead->next;
 }
 
-
 //cycle detection
 //EPI #7.3
 //Leetcode #141
@@ -484,13 +463,14 @@ bool linkedList:: detectCycle(node *p) {
 }
 
 //returns length of a list
-int linkedList:: length(node *head) {
+int linkedList:: length() {
+    node *p = head;
     int count = 0;
-    if(head == NULL)
+    if(p == NULL)
         return 0;
-    while(head) {
+    while(p) {
         count++;
-        head = head->next;
+        p = p->next;
     }
     return count;
 }

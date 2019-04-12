@@ -19,13 +19,13 @@ int main(int argc, const char * argv[]) {
     
     
     list1.addNode(5);
-    for(int i = 1; i <= NODES; i++) {
+    for(int i = 1; i <= 2; i++) {
         list1.append(i);
     }
     
     list1.append(12);
     list1.append(45);
-    list1.append(56);
+    //list1.append(56);
     
     /*
      
@@ -88,11 +88,13 @@ int main(int argc, const char * argv[]) {
     else
         cout << "no cycle";
     */
+    //list1.head = list1.mergeEvenOdd(list1.head);
     
-    //list1.display();
-    list1.display();
-    list1.head = list1.mergeEvenOdd(list1.head);
-    list1.display();
+  
+    
+    
+    
+
     
     return 0;
 }
