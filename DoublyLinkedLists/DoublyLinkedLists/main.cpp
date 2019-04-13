@@ -19,9 +19,9 @@ int main(int argc, const char * argv[]) {
     dll.append(86);
     
     
-    dll.insertAtBegin(23);
+    //dll.insertAtBegin(23);
     dll.insertAtEnd(24);
-    
-    
+    dll.insertAfterNode(3, 87);
+    dll.insertBeforeNode(4, 87);
     dll.display();
 }
