@@ -23,6 +23,8 @@ public:
     }
 };
 
+int findPos = 1;
+
 class doublyLL {
 public:
     node *head, *tail;
@@ -37,6 +39,13 @@ public:
     void insertAtEnd(int);
     void insertAfterNode(int, int);
     void insertBeforeNode(int, int);
+    
+    //search
+    bool find(int);
+    
+    //delete
+    void del(int);
+    void delKey(int);
     
     //length
     int length();
@@ -112,6 +121,7 @@ void doublyLL:: insertAfterNode(int pos, int ins) {
     
 }
 
+
 //Insert Before Node(position)
 //(position, value)
 void doublyLL:: insertBeforeNode(int pos, int ins) {
@@ -132,6 +142,66 @@ void doublyLL:: insertBeforeNode(int pos, int ins) {
     }
 }
 
+
+//Search
+bool doublyLL:: find(int key) {
+    node *p = head;
+    while(p) {
+        if(p->val == key) {
+            return true;
+        }
+        p = p->next;
+        findPos++;
+    }
+    return false;
+}
+
+
+//Delete based on position
+void doublyLL:: del(int pos) {
+    int len = this->length();
+    if(pos > len) {
+        cout << "Length < position.";
+        return;
+    }
+    if(pos <= 0) {
+        cout << "Not 0 indexed.";
+        return;
+    }
+    node *p = head;
+    node *q = tail;
+    if(pos == 1) {
+        head = p->next;
+        if(p->next)
+            p->next->prev = NULL;
+        delete p;
+    } else if(pos == len) {
+        tail = q->prev;
+        tail->next = NULL;
+        delete q;
+    } else {
+        int i = 1;
+        while(i < pos) {
+            p = p->next;
+            i++;
+        }
+        if(p->prev)
+            p->prev->next = p->next;
+        if(p->next)
+            p->next->prev = p->prev;
+        delete p;
+    }
+}
+
+
+//Delete based on the key element
+void doublyLL:: delKey(int key) {
+    if(this->find(key)) {
+        del(findPos);
+    } else {
+        cout << "Element not found" << endl;
+    }
+}
 
 //Length
 int doublyLL:: length() {
