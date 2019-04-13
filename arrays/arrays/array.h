@@ -42,6 +42,8 @@ public:
     void bubbleSort();
     void selectionSort();
     void insertionSort();
+    void quickSort(int, int);
+    int partition(int, int);
     
     //display
     void display();
@@ -159,7 +161,7 @@ void arrayOperations:: bubbleSort() {
     for(int i = 0; i < s-1; i++) {
         for(int j = 0; j < s-i-1; j++) {
             if(arr[j] > arr[j+1])
-                this->swap(&arr[j], &arr[j+1]);
+                swap(&arr[j], &arr[j+1]);
         }
     }
 }
@@ -177,6 +179,57 @@ void arrayOperations:: selectionSort() {
         swap(&arr[minIndex], &arr[i]);
     }
 }
+
+
+//insertion sort
+void arrayOperations:: insertionSort() {
+    int key;
+    for(int i = 1; i < s; i++) {
+        key = arr[i];
+        int j = i-1;
+        while(j >= 0 && arr[j] > key) {
+            arr[j+1] = arr[j];
+            j = j-1;
+        }
+        arr[j+1] = key;
+    }
+}
+
+
+//partition() for quickSort()
+int arrayOperations:: partition(int start, int end) {
+    int pivot = arr[start];
+    int i = start;
+    int j = end;
+    
+    do {        
+        do {
+            i++;
+        } while(arr[i] <= pivot);
+        
+        do {
+            j--;
+        } while(arr[j] > pivot);
+        
+        if(i < j)
+            swap(&arr[i], &arr[j]);
+    } while(i < j);
+    
+    swap(&arr[start], &arr[j]);
+    return j;
+}
+
+
+//quickSort
+void arrayOperations:: quickSort(int start, int end) {
+    int part;
+    if(start < end) {
+        part = partition(start, end);
+        quickSort(start, part);
+        quickSort(part+1, end);
+    }
+}
+
 
 //traverses and display the array
 void arrayOperations:: display() {

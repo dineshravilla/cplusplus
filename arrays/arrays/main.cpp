@@ -19,7 +19,8 @@ int main(int argc, const char * argv[]) {
     
     arr1.create({1, 7, 5, 3, 2});
     
-    
+    //arr1.create({1, 7, 5, 3, 2, 10, 9, 8, 7, 8, 1, 5, 4, 3, 2, 5, 0, 2, 12, 34, 32, 31, 19});
+
     /*
      // ...binary search test lines
     if(arr1.binarySearchIterative(0)) {
@@ -63,6 +64,10 @@ int main(int argc, const char * argv[]) {
      */
     
     //arr1.selectionSort();
+    
+    //arr1.insertionSort();
+    
+    //arr1.quickSort(0, arr1.size());
     
     arr1.display();
     return 0;
