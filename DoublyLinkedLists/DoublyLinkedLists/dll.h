@@ -47,6 +47,9 @@ public:
     void del(int);
     void delKey(int);
     
+    //reverse
+    void reverse();
+    
     //length
     int length();
     
@@ -202,6 +205,22 @@ void doublyLL:: delKey(int key) {
         cout << "Element not found" << endl;
     }
 }
+
+
+//Reverse
+void doublyLL:: reverse() {
+    node *p = head;
+    //node *q = tail;
+    while(p) {
+        node *temp = p->next;
+        p->next = p->prev;
+        p->prev = temp;
+        p = p->prev;
+        if(p != NULL && p->next == NULL)
+            head = p;
+    }
+}
+
 
 //Length
 int doublyLL:: length() {

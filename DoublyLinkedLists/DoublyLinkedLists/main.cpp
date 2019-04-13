@@ -50,6 +50,6 @@ int main(int argc, const char * argv[]) {
     } else {
         cout << "Not Found";
     }*/
-    
+    d1.reverse();
     d1.display();
 }
