@@ -1,0 +1,189 @@
+//
+//  array.h
+//  arrays
+//
+//  Created by Dinesh Ravilla on 4/13/19.
+//  Copyright © 2019 Dinesh Ravilla. All rights reserved.
+//
+
+#ifndef array_h
+#define array_h
+
+#include <vector>
+
+using namespace std;
+
+class arrayOperations {
+public:
+    
+    int *arr;
+    int s = 0;
+    int pos;
+    
+    //create functions
+    void create();
+    void create(vector<int>);
+    
+    //swap
+    void swap(int*, int*);
+    
+    //returns size of the array
+    int size();
+    
+    //returns true if key found - linear search
+    bool linearSearch(int);
+    bool binarySearchIterative(int);
+    int binarySearchRecursive(int, int, int);
+    
+    //isSorted
+    bool isSorted();
+    
+    //sort functions
+    void bubbleSort();
+    void selectionSort();
+    void insertionSort();
+    
+    //display
+    void display();
+    
+};
+
+
+//reads number of elements to be inserted in the array
+//also reads the elements
+void arrayOperations:: create() {
+    cout << "Enter the number of elements in the array:" << endl;
+    cin >> s;
+    arr = new int[s];
+    
+    cout << "Enter the elements:" << endl;
+    
+    for(int i = 0; i < s; i++) {
+        int x;
+        cin >> x;
+        arr[i] = x;
+    }
+}
+
+
+//creates an array with vector<int> as arg
+void arrayOperations:: create(vector<int> v) {
+    s = (int)v.size();
+    arr = new int[s];
+    for(int i = 0; i < s; i++) {
+        arr[i] = v[i];
+    }
+}
+
+
+//swaps 2 numbers
+void arrayOperations:: swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+//returns size
+int arrayOperations:: size() {
+    return s;
+}
+
+
+//returns true if found - linear search
+bool arrayOperations:: linearSearch(int key) {
+    pos = 0;
+    for(int i = 0; i < this->size(); i++) {
+        if(arr[i] == key) {            
+            return true;
+        }
+        pos = pos + 1;
+    }
+    return false;
+}
+
+
+//returns true if found - binary search
+bool arrayOperations:: binarySearchIterative(int key) {
+    if(!isSorted()) {
+        bubbleSort();
+    }
+    pos = 0;
+    int start = 0;
+    int end = this->size();
+    int mid = 0;
+    while(start <= end) {
+        mid = start + (end - start)/2;
+        //mid = (start+end)/2;
+        if(key == arr[mid]) {
+            pos = mid;
+            return true;
+        } else if(key < arr[mid]) {
+            end = mid-1;
+        } else {
+            start = mid+1;
+        }
+        //pos++;
+    }    
+    return false;
+}
+
+
+//binary search recursive
+int arrayOperations:: binarySearchRecursive(int start, int end, int key) {
+    if(end >= start) {
+        int mid = start + (end - start)/2;
+        if(key == arr[mid]) {
+            return mid;
+        }
+        if(key < arr[mid]) {
+            return binarySearchRecursive(start, mid-1, key);
+        }
+        return binarySearchRecursive(mid+1, end, key);
+    }
+    
+    return -1;
+}
+
+
+bool arrayOperations:: isSorted() {
+    for(int i = 0; i < s-1; i++) {
+        if(arr[i] > arr[i+1])
+            return false;
+    }
+    return true;
+}
+
+
+//bubble sort
+void arrayOperations:: bubbleSort() {
+    for(int i = 0; i < s-1; i++) {
+        for(int j = 0; j < s-i-1; j++) {
+            if(arr[j] > arr[j+1])
+                this->swap(&arr[j], &arr[j+1]);
+        }
+    }
+}
+
+
+//selection sort
+void arrayOperations:: selectionSort() {
+    int minIndex;
+    for(int i = 0; i < s-1; i++) {
+        minIndex = i;
+        for(int j = i+1; j < s; j++) {
+            if(arr[j] < arr[minIndex])
+                minIndex = j;
+        }
+        swap(&arr[minIndex], &arr[i]);
+    }
+}
+
+//traverses and display the array
+void arrayOperations:: display() {
+    for(int i = 0; i < s; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+#endif /* array_h */
