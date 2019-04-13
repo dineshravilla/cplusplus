@@ -11,17 +11,26 @@
 
 int main(int argc, const char * argv[]) {
     
-    doublyLL dll;
+    doublyLL d1;
     
-    dll.append(12);
-    dll.append(32);
-    dll.append(54);
-    dll.append(86);
+    d1.append(12);
+    d1.append(32);
+    d1.append(54);
+    d1.append(86);
+    d1.append(43);
+    d1.append(98);
     
+    /*
+    //d1.insertAtBegin(23);
+    d1.insertAtEnd(24);
+    d1.insertAfterNode(3, 87);
+    d1.insertBeforeNode(4, 87);
     
-    //dll.insertAtBegin(23);
-    dll.insertAtEnd(24);
-    dll.insertAfterNode(3, 87);
-    dll.insertBeforeNode(4, 87);
-    dll.display();
+    d1.insertBeforeNode(1, 54);                    //head
+    d1.insertAfterNode(d1.length(), 65);          //tail
+    
+    cout << d1.length() << endl;
+    */
+    
+    d1.display();
 }

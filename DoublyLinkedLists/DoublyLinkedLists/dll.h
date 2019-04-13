@@ -38,6 +38,9 @@ public:
     void insertAfterNode(int, int);
     void insertBeforeNode(int, int);
     
+    //length
+    int length();
+    
     //create doubly LL
     void createdoublyLL();
     
@@ -99,8 +102,14 @@ void doublyLL:: insertAfterNode(int pos, int ins) {
     //cout << p->val;
     temp->next = p->next;
     temp->prev = p;
-    p->next->prev = temp;
+    
+    if(p->next) {
+        p->next->prev = temp;
+    } else {
+        tail = temp;
+    }
     p->next = temp;
+    
 }
 
 //Insert Before Node(position)
@@ -121,6 +130,19 @@ void doublyLL:: insertBeforeNode(int pos, int ins) {
     } else {
         head = temp;
     }
+}
+
+
+//Length
+int doublyLL:: length() {
+    node *p = head;
+   
+    int count = 0;
+    while(p) {
+        p = p->next;
+        count++;
+    }
+    return count;
 }
 
 //Display
