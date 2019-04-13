@@ -130,7 +130,7 @@ bool arrayOperations:: binarySearchIterative(int key) {
 
 //binary search recursive
 int arrayOperations:: binarySearchRecursive(int start, int end, int key) {
-    if(start >= end) {
+    if(start <= end) {
         int mid = start + (end - start)/2;
         if(key == arr[mid]) {
             return mid;
