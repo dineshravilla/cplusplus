@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     
     //arr1.create();
     
-    arr1.create({1, 7, 5, 3, 2});
+    arr1.create({1, 7, 5, 3, 2, 6, 4, 0});
     
     //arr1.create({1, 7, 5, 3, 2, 10, 9, 8, 7, 8, 1, 5, 4, 3, 2, 5, 0, 2, 12, 34, 32, 31, 19});
 
@@ -72,14 +72,24 @@ int main(int argc, const char * argv[]) {
     //cout << "MIN: " << arr1.getMin() << endl;
     //cout << "MAX: " << arr1.getMax() << endl;
     
-    arr1.display();
+    //arr1.display();
     
     //arr1.reverse();
     //arr1.rotate(2);
     //arr1.leftShift(5);
     
     //arr1.rightShift(2);
+    //cout << "Second min:" << arr1.getSecondMin() << endl;
+    
+    //cout << "Second max: " << arr1.getSecondMax() << endl;
+    
+    //cout << "Third min:" << arr1.getKthMin(8) << endl;
+    
+    cout << "Third max: " << arr1.getKthMax(8) << endl;
+    
+    arr1.quickSort(0, arr1.s);
     
     arr1.display();
+    
     return 0;
 }

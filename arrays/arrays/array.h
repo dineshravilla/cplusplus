@@ -47,9 +47,13 @@ public:
     
     //min
     int getMin();
+    int getSecondMin();
+    int getKthMin(int);
     
     //max
     int getMax();
+    int getSecondMax();
+    int getKthMax(int);
     
     //reverse
     void reverse();
@@ -257,6 +261,50 @@ int arrayOperations:: getMin() {
 }
 
 
+//get 2nd minimum
+int arrayOperations:: getSecondMin() {
+    int min1 = INT_MAX;
+    int min2 = min1;
+    for(int i = 0; i < s; i++) {
+        if(arr[i] < min1) {
+            min2 = min1;
+            min1 = arr[i];
+        } else if(arr[i] < min2 && arr[i] != min1) {
+            min2 = arr[i];
+        }
+    }
+    if(min2 == INT_MAX) {
+        cout << "No second minimum." << endl;
+        return -1;
+    }
+    return min2;
+}
+
+
+//get Kth minimum
+int arrayOperations:: getKthMin(int k) {
+    
+    if(k > s || k <= 0) {
+        cout << "No such minimum." << endl;
+        return -1;
+    }
+    
+    int j = partition(0, s);
+    do {
+        if(j == k-1) {
+            return arr[k-1];
+        }
+        if(j > k-1) {
+            j = partition(0, j);
+        }
+        if(j < k-1) {
+            j = partition(j+1, s);
+        }
+    } while(1);
+    return arr[k-1];
+}
+
+
 //get maximum
 int arrayOperations:: getMax() {
     int max = INT_MIN;
@@ -266,6 +314,49 @@ int arrayOperations:: getMax() {
         }
     }
     return max;
+}
+
+
+//get 2nd maximum
+int arrayOperations:: getSecondMax() {
+    int max1 = INT_MIN;
+    int max2 = max1;
+    for(int i = 0; i < s; i++) {
+        if(arr[i] > max1) {
+            max2 = max1;
+            max1 = arr[i];
+        } else if(arr[i] > max2 && arr[i] != max1) {
+            max2 = arr[i];
+        }
+    }
+    if(max2 == INT_MIN) {
+        cout << "No second maximum" << endl;
+        return -1;
+    }    
+    return max2;
+}
+
+
+//get Kth maximum
+int arrayOperations:: getKthMax(int k) {
+    if(k > s || k <= 0) {
+        cout << "No such maximum." << endl;
+        return -1;
+    }
+    
+    int j = partition(0, s);
+    do {
+        if(j == s-k) {
+            return arr[s-k];
+        }
+        if(j > s-k) {
+            j = partition(0, j);
+        }
+        if(j < s-k) {
+            j = partition(j+1, s);
+        }
+    } while(1);
+    return arr[s-k];
 }
 
 
