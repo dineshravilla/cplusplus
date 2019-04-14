@@ -74,7 +74,11 @@ int main(int argc, const char * argv[]) {
     
     arr1.display();
     
-    arr1.reverse();
+    //arr1.reverse();
+    //arr1.rotate(2);
+    //arr1.leftShift(5);
+    
+    //arr1.rightShift(2);
     
     arr1.display();
     return 0;

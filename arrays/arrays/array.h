@@ -55,7 +55,9 @@ public:
     void reverse();
     
     //rotate
-    void rotate();
+    void rotate(int);
+    void leftShift(int);
+    void rightShift(int);
     
     //display
     void display();
@@ -280,7 +282,53 @@ void arrayOperations:: reverse() {
 }
 
 
-//rotate
+//rotate (times to rotate)
+//1 7 5 3 2 ==> 2 1 7 5 3
+void arrayOperations:: rotate(int times) {
+    for(int i = 1; i <= times % s; i++) {
+        int temp = arr[s-1];
+        for(int j = s-1; j > 0; j--) {
+            arr[j] = arr[j-1];
+        }
+        arr[0] = temp;
+    }
+}
+
+
+//left shift (times to shift)
+// 1 7 5 3 2 ==> 7 5 3 2 0
+void arrayOperations:: leftShift(int times) {
+    if(times >= s) {
+        for(int i = 0; i < s; i++) {
+            arr[i] = 0;
+        }
+        return;
+    }
+    for(int i = 1; i <= times; i++) {
+        for(int j = 0; j < s-1; j++) {
+            arr[j] = arr[j+1];
+        }
+        arr[s-1] = 0;
+    }
+}
+
+
+//right shift (times to shift)
+// 1 7 5 3 2 ==> 0 1 7 5 3
+void arrayOperations:: rightShift(int times) {
+    if(times >= s) {
+        for(int i = 0; i < s; i++) {
+            arr[i] = 0;
+        }
+        return;
+    }
+    for(int i = 1; i <= times; i++) {
+        for(int j = s-1; j > 0; j--) {
+            arr[j] = arr[j-1];
+        }
+        arr[0] = 0;
+    }
+}
 
 
 //traverses and display the array
