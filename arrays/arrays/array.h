@@ -23,6 +23,7 @@ public:
     //create functions
     void create();
     void create(vector<int>);
+    void create(int, int);
     
     //swap
     void swap(int*, int*);
@@ -92,6 +93,17 @@ void arrayOperations:: create(vector<int> v) {
     arr = new int[s];
     for(int i = 0; i < s; i++) {
         arr[i] = v[i];
+    }
+}
+
+
+//creates an array with "size" size with "val"
+//(size, val)
+void arrayOperations:: create(int size, int val) {
+    s = size;
+    arr = new int[size];
+    for(int i = 0; i < size; i++) {
+        arr[i] = val;
     }
 }
 
