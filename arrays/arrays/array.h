@@ -24,6 +24,7 @@ public:
     void create();
     void create(vector<int>);
     void create(int, int);
+    void create(int);
     
     //swap
     void swap(int*, int*);
@@ -105,6 +106,14 @@ void arrayOperations:: create(int size, int val) {
     for(int i = 0; i < size; i++) {
         arr[i] = val;
     }
+}
+
+
+//creates an array with size
+//(size)
+void arrayOperations:: create(int size) {
+    s = size;
+    arr = new int[size];
 }
 
 
