@@ -69,6 +69,13 @@ int main(int argc, const char * argv[]) {
     
     //arr1.quickSort(0, arr1.size());
     
+    //cout << "MIN: " << arr1.getMin() << endl;
+    //cout << "MAX: " << arr1.getMax() << endl;
+    
+    arr1.display();
+    
+    arr1.reverse();
+    
     arr1.display();
     return 0;
 }

@@ -45,6 +45,18 @@ public:
     void quickSort(int, int);
     int partition(int, int);
     
+    //min
+    int getMin();
+    
+    //max
+    int getMax();
+    
+    //reverse
+    void reverse();
+    
+    //rotate
+    void rotate();
+    
     //display
     void display();
     
@@ -229,6 +241,46 @@ void arrayOperations:: quickSort(int start, int end) {
         quickSort(part+1, end);
     }
 }
+
+
+//get minimum
+int arrayOperations:: getMin() {
+    int min = INT_MAX;
+    for(int i = 0; i < s; i++) {
+        if(arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+
+//get maximum
+int arrayOperations:: getMax() {
+    int max = INT_MIN;
+    for(int i = 0; i < s; i++) {
+        if(arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+
+//reverse
+void arrayOperations:: reverse() {
+    int *tempArr;
+    tempArr = new int[s];
+    int j = 0;
+    for(int i = s-1; i >= 0; i--) {
+        tempArr[j] = arr[i];
+        j++;
+    }
+    arr = tempArr;
+}
+
+
+//rotate
 
 
 //traverses and display the array
