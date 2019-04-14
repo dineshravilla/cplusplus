@@ -77,17 +77,15 @@ int main(int argc, const char * argv[]) {
     //arr1.reverse();
     //arr1.rotate(2);
     //arr1.leftShift(5);
-    
     //arr1.rightShift(2);
+    
     //cout << "Second min:" << arr1.getSecondMin() << endl;
     
     //cout << "Second max: " << arr1.getSecondMax() << endl;
     
     //cout << "Third min:" << arr1.getKthMin(8) << endl;
     
-    cout << "Third max: " << arr1.getKthMax(8) << endl;
-    
-    arr1.quickSort(0, arr1.s);
+    //cout << "Third max: " << arr1.getKthMax(8) << endl;
     
     arr1.display();
     
