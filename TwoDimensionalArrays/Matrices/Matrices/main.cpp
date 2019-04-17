@@ -66,6 +66,9 @@ void transposeMatrix(matrix &m) {
 }
 
 bool isSymmetric(const matrix &m) {
+    //just upper and lower trianlge in the matrix
+    //should be a square matrix
+    //it is assumed the matrix is square
     for(int i = 0; i < ROWS-1; i++) {
         for(int j = i+1; j < ROWS; j++) {
             if(m[i][j] != m[j][i])
@@ -75,13 +78,28 @@ bool isSymmetric(const matrix &m) {
     return true;
 }
 
+void multiplyMatrix(const matrix &m1, const matrix &m2) {
+    //r1, c1 - m1
+    //r2, c2 - m2
+    //assumed c1 == r2 => did not check this condition
+    matrix result(ROWS, row(COLS));                         // ROWS = r1; COLS = c2
+    for(int i = 0; i < ROWS; i++) {                         // ROWS = r1
+        for(int j = 0; j < COLS; j++) {                     // COLS = c2
+            for(int k = 0; k < COLS; k++) {                 // COLS = c1
+                result[i][j] += m1[i][k] * m2[k][j];
+            }
+        }
+    }
+    printMatrix(result);
+}
+
 int main(int argc, const char * argv[]) {
     
     matrix m1(ROWS, row(COLS));
     matrix m2(ROWS, row(COLS));
     readMatrix(m1);
     cout << endl << "Second Matrix." << endl;
-    //readMatrix(m2);
+    readMatrix(m2);
     
     //addMatrix(m1, m2);
     //transposeMatrix(m1);
@@ -95,6 +113,8 @@ int main(int argc, const char * argv[]) {
         cout << "Not Symmetric.";
     cout << endl;
     */
+    
+    multiplyMatrix(m1, m2);
     
     return 0;
 }
